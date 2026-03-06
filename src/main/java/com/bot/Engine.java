@@ -8,7 +8,6 @@ public class Engine {
     private OutputStreamWriter writer;
 
     public void iniciar() throws IOException {
-        // No Mac (Homebrew), o caminho padrão costuma ser apenas "stockfish"
         engineProcess = new ProcessBuilder("stockfish").start();
         reader = new BufferedReader(new InputStreamReader(engineProcess.getInputStream()));
         writer = new OutputStreamWriter(engineProcess.getOutputStream());
@@ -21,7 +20,7 @@ public class Engine {
         String linha;
         while ((linha = reader.readLine()) != null) {
             if (linha.startsWith("bestmove")) {
-                return linha.split(" ")[1]; // Ex: "bestmove e2e4" -> retorna "e2e4"
+                return linha.split(" ")[1]; 
             }
         }
         return null;

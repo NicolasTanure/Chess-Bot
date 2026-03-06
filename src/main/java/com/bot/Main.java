@@ -15,7 +15,7 @@ public class Main {
         WebDriver driver = new SafariDriver();
         driver.get("https://www.chess.com/play/computer");
 
-        // 1. Tenta clicar no Start automaticamente
+        
         try {
             System.out.println("Aguardando o carregamento do botão Start...");
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -40,7 +40,7 @@ public class Main {
         String ultimoFenJogada = "";
         System.out.println("Bot em campo. Aguardando lances...");
 
-        // 3. Game Loop
+        //. Game Loop
         while (true) {
             List<WebElement> pecas = driver.findElements(By.className("piece"));
             String minhaCor = detectarMinhaCor(pecas);
@@ -51,7 +51,6 @@ public class Main {
                     String melhorLance = engine.calcularMelhorLance(fenAtual, 500);
                     if (melhorLance != null) {
                         moverPeca(melhorLance, driver);
-                        // Atualiza o estado para evitar lances repetidos
                         ultimoFenJogada = gerarFEN(driver.findElements(By.className("piece")), minhaCor);
                     }
                 }
